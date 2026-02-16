@@ -1,87 +1,311 @@
-
 <!DOCTYPE html>
 <html lang="ar">
 <head>
 <meta charset="UTF-8">
-<title>برنامج حساب الفئات</title>
+<title>برنامج حساب الفئات النقدية</title>
 <style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
 body {
-    font-family: Arial;
-    direction: rtl;
-    text-align: center;
-    background: #f4f4f4;
+    background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+    padding: 15px;
 }
+
 .container {
+    background: rgba(255, 255, 255, 0.95);
+    padding: 30px;
+    width: 100%;
+    max-width: 420px;
+    border-radius: 20px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(10px);
+    transform: translateY(0);
+    transition: transform 0.3s ease;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.container:hover {
+    transform: translateY(-5px);
+}
+
+h2 {
+    color: #1e3c72;
+    font-size: 28px;
+    margin-bottom: 30px;
+    position: relative;
+    padding-bottom: 10px;
+}
+
+h2::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 3px;
+    background: linear-gradient(to right, #1e3c72, #2a5298);
+    border-radius: 2px;
+}
+
+.input-group {
+    background: #f0f4f8;
+    border-radius: 12px;
+    padding: 10px 15px;
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border: 2px solid transparent;
+    transition: all 0.3s ease;
+}
+
+.input-group:hover {
+    border-color: #1e3c72;
     background: white;
-    padding: 20px;
-    width: 350px;
-    margin: 50px auto;
-    border-radius: 10px;
-    box-shadow: 0 0 10px #ccc;
+    box-shadow: 0 5px 15px rgba(30, 60, 114, 0.2);
 }
-input {
-    width: 80px;
-    padding: 5px;
-    margin: 5px;
+
+label {
+    font-size: 18px;
+    font-weight: 600;
+    color: #1e3c72;
+    display: flex;
+    align-items: center;
+    gap: 5px;
 }
-button {
-    padding: 10px 20px;
-    margin-top: 15px;
-    cursor: pointer;
-}
-.total {
+
+label i {
+    color: #2a5298;
     font-size: 20px;
-    margin-top: 20px;
+}
+
+input {
+    width: 100px;
+    padding: 10px 15px;
+    border: 2px solid #cbd5e0;
+    border-radius: 10px;
+    font-size: 16px;
+    text-align: center;
+    font-weight: 600;
+    color: #1e3c72;
+    transition: all 0.3s ease;
+    background: white;
+}
+
+input:focus {
+    outline: none;
+    border-color: #2a5298;
+    box-shadow: 0 0 0 3px rgba(42, 82, 152, 0.1);
+    transform: scale(1.02);
+}
+
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+    opacity: 1;
+    height: 24px;
+}
+
+button {
+    background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+    color: white;
+    border: none;
+    padding: 15px 30px;
+    font-size: 20px;
+    font-weight: 600;
+    border-radius: 12px;
+    cursor: pointer;
+    width: 100%;
+    margin: 25px 0 20px;
+    transition: all 0.3s ease;
+    box-shadow: 0 10px 20px rgba(30, 60, 114, 0.3);
+    position: relative;
+    overflow: hidden;
+}
+
+button::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.2);
+    transform: translate(-50%, -50%);
+    transition: width 0.6s, height 0.6s;
+}
+
+button:hover::before {
+    width: 300px;
+    height: 300px;
+}
+
+button:hover {
+    background: linear-gradient(135deg, #2a5298 0%, #1e3c72 100%);
+    box-shadow: 0 15px 30px rgba(30, 60, 114, 0.4);
+    transform: translateY(-2px);
+}
+
+button:active {
+    transform: translateY(0);
+    box-shadow: 0 5px 15px rgba(30, 60, 114, 0.3);
+}
+
+.total {
+    background: linear-gradient(135deg, #f39c12 0%, #e67e22 100%);
+    color: white;
+    padding: 20px;
+    border-radius: 12px;
+    font-size: 24px;
     font-weight: bold;
+    text-align: center;
+    box-shadow: 0 10px 20px rgba(243, 156, 18, 0.3);
+    transition: all 0.3s ease;
+}
+
+.total:hover {
+    transform: scale(1.02);
+    box-shadow: 0 15px 30px rgba(243, 156, 18, 0.4);
+}
+
+.label-icon {
+    margin-left: 8px;
+    font-size: 20px;
+}
+
+@media (max-width: 480px) {
+    .container {
+        padding: 20px;
+    }
+    
+    h2 {
+        font-size: 24px;
+    }
+    
+    .input-group {
+        padding: 8px 12px;
+    }
+    
+    label {
+        font-size: 16px;
+    }
+    
+    input {
+        width: 80px;
+        padding: 8px 12px;
+    }
+    
+    button {
+        padding: 12px 24px;
+        font-size: 18px;
+    }
+    
+    .total {
+        font-size: 20px;
+        padding: 15px;
+    }
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.container {
+    animation: fadeInUp 0.6s ease-out;
 }
 </style>
 </head>
 <body>
 
 <div class="container">
-<h2>برنامج حساب الفئات</h2>
-
-<div>
-<label>200 جنيه:</label>
-<input type="number" id="f200" value="0">
-</div>
-
-<div>
-<label>100 جنيه:</label>
-<input type="number" id="f100" value="0">
-</div>
-
-<div>
-<label>50 جنيه:</label>
-<input type="number" id="f50" value="0">
-</div>
-
-<div>
-<label>20 جنيه:</label>
-<input type="number" id="f20" value="0">
-</div>
-
-<div>
-<label>10 جنيه:</label>
-<input type="number" id="f10" value="0">
-</div>
-
-<button onclick="calculate()">احسب الإجمالي</button>
-
-<div class="total" id="result">الإجمالي: 0 جنيه</div>
+    <h2>💰 حساب الفئات النقدية</h2>
+    
+    <div class="input-group">
+        <label>
+            <span class="label-icon">💵</span>
+            200 جنيه:
+        </label>
+        <input type="number" id="f200" placeholder="0">
+    </div>
+    
+    <div class="input-group">
+        <label>
+            <span class="label-icon">💴</span>
+            100 جنيه:
+        </label>
+        <input type="number" id="f100" placeholder="0">
+    </div>
+    
+    <div class="input-group">
+        <label>
+            <span class="label-icon">💶</span>
+            50 جنيه:
+        </label>
+        <input type="number" id="f50" placeholder="0">
+    </div>
+    
+    <div class="input-group">
+        <label>
+            <span class="label-icon">💷</span>
+            20 جنيه:
+        </label>
+        <input type="number" id="f20" placeholder="0">
+    </div>
+    
+    <div class="input-group">
+        <label>
+            <span class="label-icon">🪙</span>
+            10 جنيه:
+        </label>
+        <input type="number" id="f10" placeholder="0">
+    </div>
+    
+    <button onclick="calculate()">🔢 احسب الإجمالي 🔢</button>
+    
+    <div class="total" id="result">الإجمالي: 0 جنيه</div>
 </div>
 
 <script>
 function calculate() {
-    let total =
-        (document.getElementById("f200").value * 200) +
-        (document.getElementById("f100").value * 100) +
-        (document.getElementById("f50").value * 50) +
-        (document.getElementById("f20").value * 20) +
-        (document.getElementById("f10").value * 10);
-
-    document.getElementById("result").innerHTML =
-        "الإجمالي: " + total + " جنيه";
+    let f200 = document.getElementById("f200").value;
+    let f100 = document.getElementById("f100").value;
+    let f50 = document.getElementById("f50").value;
+    let f20 = document.getElementById("f20").value;
+    let f10 = document.getElementById("f10").value;
+    
+    f200 = f200 === '' ? 0 : parseInt(f200);
+    f100 = f100 === '' ? 0 : parseInt(f100);
+    f50 = f50 === '' ? 0 : parseInt(f50);
+    f20 = f20 === '' ? 0 : parseInt(f20);
+    f10 = f10 === '' ? 0 : parseInt(f10);
+    
+    let total = (f200 * 200) + (f100 * 100) + (f50 * 50) + (f20 * 20) + (f10 * 10);
+    
+    let resultElement = document.getElementById("result");
+    resultElement.innerHTML = "💰 الإجمالي: " + total + " جنيه 💰";
+    
+    resultElement.style.transform = 'scale(1.05)';
+    setTimeout(() => {
+        resultElement.style.transform = 'scale(1)';
+    }, 200);
 }
 </script>
 
