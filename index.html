@@ -236,11 +236,11 @@ button:active {
 <body>
 
 <div class="container">
-    <h2>💰 حساب الفئات النقدية</h2>
+    <h2> حساب الفئات النقدية</h2>
     
     <div class="input-group">
         <label>
-            <span class="label-icon">💵</span>
+            <span class="label-icon"></span>
             200 جنيه:
         </label>
         <input type="number" id="f200" placeholder="0">
@@ -248,7 +248,7 @@ button:active {
     
     <div class="input-group">
         <label>
-            <span class="label-icon">💴</span>
+            <span class="label-icon">/span>
             100 جنيه:
         </label>
         <input type="number" id="f100" placeholder="0">
@@ -256,7 +256,7 @@ button:active {
     
     <div class="input-group">
         <label>
-            <span class="label-icon">💶</span>
+            <span class="label-icon"></span>
             50 جنيه:
         </label>
         <input type="number" id="f50" placeholder="0">
@@ -264,7 +264,7 @@ button:active {
     
     <div class="input-group">
         <label>
-            <span class="label-icon">💷</span>
+            <span class="label-icon"></span>
             20 جنيه:
         </label>
         <input type="number" id="f20" placeholder="0">
@@ -272,13 +272,13 @@ button:active {
     
     <div class="input-group">
         <label>
-            <span class="label-icon">🪙</span>
+            <span class="label-icon"></span>
             10 جنيه:
         </label>
         <input type="number" id="f10" placeholder="0">
     </div>
     
-    <button onclick="calculate()">🔢 احسب الإجمالي 🔢</button>
+    <button onclick="calculate()"> احسب الإجمالي </button>
     
     <div class="total" id="result">الإجمالي: 0 جنيه</div>
 </div>
@@ -300,7 +300,7 @@ function calculate() {
     let total = (f200 * 200) + (f100 * 100) + (f50 * 50) + (f20 * 20) + (f10 * 10);
     
     let resultElement = document.getElementById("result");
-    resultElement.innerHTML = "💰 الإجمالي: " + total + " جنيه 💰";
+    resultElement.innerHTML = " الإجمالي: " + total + " جنيه ";
     
     resultElement.style.transform = 'scale(1.05)';
     setTimeout(() => {
